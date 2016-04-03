@@ -103,7 +103,14 @@
           /* PUT ANY CHANGES TO THE JAVASCRIPT HERE  */
           // function Invert(img) {
           // func = 'color'; // last used function
-            
+            drawImageIOSFix(context2,img, 0, 0, img.naturalWidth, img.naturalHeight, 0, 0, 600, 500);
+            var imgd = context2.getImageData(0, 0, 600, 500);
+            var data = imgd.data;
+            for (var i = 0, n = data.length; i < n; i += 4) {
+            data[i] = 0; // red color pixels
+            data[i+1] = 0; // green color pixels
+            } //end of color intensity function
+             context2.putImageData(imgd, 0, 0);// put image data back to context
         } // end of img.onload
         
         img.src = reader.result;
