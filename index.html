@@ -101,17 +101,16 @@
           /*  ++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 
           /* PUT ANY CHANGES TO THE JAVASCRIPT HERE  */
-          // function Invert(img) {
-          // func = 'color'; // last used function
-            drawImageIOSFix(context2,img, 0, 0, img.naturalWidth, img.naturalHeight, 0, 0, 600, 500);
-            var imgd = context2.getImageData(0, 0, 600, 500);
+          // func = 'color'; // last used function 
+            drawImageIOSFix(context2,img, 0, 0, img.naturalWidth, img.naturalHeight, 0, 0, 600, 500);//this will appear in second canvas
+            var imgd = context2.getImageData(0, 0, 600, 500);//getImageData refers to the image in first canvas
             var data = imgd.data;
             for (var i = 0, n = data.length; i < n; i += 4) {
             data[i] = 0; // red color pixels
             data[i+1] = 0; // green color pixels
-            } //end of color intensity function
-             context2.putImageData(imgd, 0, 0);// put image data back to context
-        } // end of img.onload
+            } //end of color intensity function to leave blue pixels remaining
+             context2.putImageData(imgd, 0, 0);// put image data back to context2 (on second canvas)
+      } // end of img.onload
         
         img.src = reader.result;
       } //  end of reader.onload
@@ -142,20 +141,20 @@
       
       <canvas id="myCanvas" width=600 height=500 style="border:1px solid #d3d3d3;"></canvas><!-- creates first canvas-->
       <script> /* This script initiates the cavas and puts the text on the canvas "myCanvas" */
-        var canvas = document.getElementById('myCanvas');/* variable for first canvas*/
+        var canvas = document.getElementById('myCanvas');/* variable for first canvas--following code will appear in the first canvas*/
         var context = canvas.getContext("2d");
         context.font = '20pt Calibri';/*font type and size*/
         context.fillStyle = "black";/*text color*/
         context.fillText("Original image will go here", 10, 20);/*this text will appear in first canvas*/
-      </script>
+      </script><!-- closes script for the first canvas-->
      <canvas id="canvas2" width=600 height=500 style="border:1px solid #d3d3d3;"></canvas><!-- creates second canvas element-->
-     <script>
-        var canvas2 = document.getElementById("canvas2");/* variable for second canvas*/
-        var context2 = canvas2.getContext("2d");
-        context2.font = '20pt Calibri';/*font type and size*/
+     <script>/* this script initiates the second canvas and puts the text on "canvas2"*/
+        var canvas2 = document.getElementById("canvas2");/* variable that allows second canvas to be called for*/
+        var context2 = canvas2.getContext("2d");//must have context2 and canvas2 to ensure the following text will appear in the second canvas
+        context2.font = '20pt Calibri';/*font type and size--context2 ensures that it will appear in canvas2*/
         context2.fillStyle = "black";/*text color*/
         context2.fillText("Transformed image will go here", 10, 20);/*this text will appear in second canvas*/
-     </script>
+     </script><!--closes the script for the second canvas-->
     </div><!-- /content -->
     <div data-role="footer" data-position="fixed">
       <p>DIY Diagnostics</p>
