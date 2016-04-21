@@ -134,12 +134,12 @@
  <body>
   <div data-role="page">
     <div data-role="header">
-    <h1>Primary Colors</h1></div><!-- /header -->
+    <h1>Touch and Analysis</h1></div><!-- /header -->
     <div data-role="content">	
-      <h2>Push button to take picture.</h2>
+      <h2>Push the button below to take a picture!</h2>
       <div>
-        Press blue button to create or choose image file:
-        <input type="file" id="fileInput" STYLE="background-color: #001AFF;"><!-- the color can be changed using RGB color codes-->
+        Press the button to create or choose image file:
+        <input type="file" id="fileInput" STYLE="background-color: #73F3C0;"><!-- the color can be changed using RGB color codes-->
       </div>
       <div id="messageDisplayArea"></div>
       
@@ -151,14 +151,7 @@
         context.fillStyle = "black";/*text color*/
         context.fillText("Original image will go here", 10, 20);/*this text will appear in first canvas*/
       </script><!-- closes script for the first canvas-->
-     <canvas id="canvas2" width=600 height=500 style="border:1px solid #d3d3d3;"></canvas><!-- creates second canvas element-->
-     <script>/* this script initiates the second canvas and puts the text on "canvas2"*/
-        var canvas2 = document.getElementById("canvas2");/* variable that allows second canvas to be called for*/
-        var context2 = canvas2.getContext("2d");//must have context2 and canvas2 to ensure the following text will appear in the second canvas
-        context2.font = '20pt Calibri';/*font type and size--context2 ensures that it will appear in canvas2*/
-        context2.fillStyle = "black";/*text color*/
-        context2.fillText("Transformed image will go here", 10, 20);/*this text will appear in second canvas*/
-     </script><!--closes the script for the second canvas-->
+     
     </div><!-- /content -->
     <div data-role="footer" data-position="fixed">
       <p>DIY Diagnostics</p>
