@@ -146,7 +146,20 @@
       
       <canvas id="myCanvas" width=600 height=500 style="border:1px solid #d3d3d3;"></canvas><!-- creates first canvas-->
       <script> /* This script initiates the cavas and puts the text on the canvas "myCanvas" */
-        var canvas = document.getElementById('myCanvas');/* variable for first canvas--following code will appear in the first canvas*/
+        function initialise () {
+                var canvas = document.getElementById('myCanvas');/* variable for first canvas--following code will appear in the first canvas*/
+                canvas.addEventListener("touchstart",doTouchStart,false)// this tells addEventListener to activate touchstart event
+                 //the second argument is called doTouchStart and should be called when an image is touched on the canvas
+        }
+        function doTouchStart(event) {
+                 // because the default for touch events are much more complex, we preventDefault
+                 // preventing default allows the function to detect only one touch
+                event.preventDefault();
+                canvas_x = event.targetTouches[0].pageX;
+                canvas_y = event.targetTouches[0].pageY;
+                 //touches are stored in the array called targetTouches
+        }
+        
         var context = canvas.getContext("2d");
         context.font = '20pt Calibri';/*font type and size*/
         context.fillStyle = "black";/*text color*/
