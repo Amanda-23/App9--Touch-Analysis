@@ -148,6 +148,10 @@
       <script> /* This script initiates the cavas and puts the text on the canvas "myCanvas" */
         function initialise () {
                 var canvas = document.getElementById('myCanvas');/* variable for first canvas--following code will appear in the first canvas*/
+                var context = canvas.getContext("2d");
+                    context.font = '20pt Calibri';/*font type and size*/
+                    context.fillStyle = "black";/*text color*/
+                    context.fillText("Original image will go here", 10, 20);/*this text will appear in first canvas*/
                 canvas.addEventListener("touchstart",doTouchStart,false)// this tells addEventListener to activate touchstart event
                  //the second argument is called doTouchStart and should be called when an image is touched on the canvas
         }
@@ -160,10 +164,7 @@
                  //touches are stored in the array called targetTouches
         }
         
-        var context = canvas.getContext("2d");
-        context.font = '20pt Calibri';/*font type and size*/
-        context.fillStyle = "black";/*text color*/
-        context.fillText("Original image will go here", 10, 20);/*this text will appear in first canvas*/
+      
       </script><!-- closes script for the first canvas-->
      
     </div><!-- /content -->
