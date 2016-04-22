@@ -105,6 +105,20 @@
           /*  ++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 
           /* PUT ANY CHANGES TO THE JAVASCRIPT HERE  */
+          function init() {
+                var canvas = document.getElementById('myCanvas');/* variable for first canvas--following code will appear in the first canvas*/
+                canvas.addEventListener("touchstart",doTouchStart,false)// this tells addEventListener to activate touchstart event
+                 //the second argument is called doTouchStart and should be called when an image is touched on the canvas
+          }
+         
+          function doTouchStart(event) {
+                 // because the default for touch events are much more complex, we preventDefault
+                 // preventing default allows the function to detect only one touch
+                event.preventDefault();
+                canvas_x = event.targetTouches[0].pageX;
+                canvas_y = event.targetTouches[0].pageY;
+                 //touches are stored in the array called targetTouches
+          }
           
       } // end of img.onload
         
@@ -147,21 +161,6 @@
              context.font = '20pt Calibri';/*font type and size*/
              context.fillStyle = "black";/*text color*/
              context.fillText("Original image will go here", 10, 20);/*this text will appear in first canvas*/
-             
-             function init() {
-                var canvas = document.getElementById('myCanvas');/* variable for first canvas--following code will appear in the first canvas*/
-                canvas.addEventListener("touchstart",doTouchStart,false)// this tells addEventListener to activate touchstart event
-                 //the second argument is called doTouchStart and should be called when an image is touched on the canvas
-        }
-         
-        function doTouchStart(event) {
-                 // because the default for touch events are much more complex, we preventDefault
-                 // preventing default allows the function to detect only one touch
-                event.preventDefault();
-                canvas_x = event.targetTouches[0].pageX;
-                canvas_y = event.targetTouches[0].pageY;
-                 //touches are stored in the array called targetTouches
-        }
         
       
       </script><!-- closes script for the first canvas-->
