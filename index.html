@@ -106,19 +106,20 @@
 
           /* PUT ANY CHANGES TO THE JAVASCRIPT HERE  */
           function init() {
-                var touchzone = document.getElementById('myCanvas');/* variable for first canvas touchzone- following code will appear in the first canvas*/
-                touchzone.addEventListener("touchstart",draw,false)// this tells addEventListener to activate touchstart event
+                var canvas = document.getElementById('myCanvas');/* variable for first canvas touchzone- following code will appear in the first canvas*/
+                canvas.addEventListener("touchstart",doTouchStart,false)// this tells addEventListener to activate touchstart event
                  //the second argument is called doTouchStart and should be called when an image is touched on the canvas
           }
-         
-          function draw() {
-                var canvas = document.getElementById('myCanvas');
-                
-                if (canvas.getContext2) {
-                var context2= canvas.getContext2("2d")
-                context2.fillRect (event.touches[0].pageX, event.touches[0].pageY, 5, 5);
-                }
-          }
+
+         function doTouchStart(event) {
+                // because the default for touch events are much more complex, we preventDefault
+                // preventing default allows the function to detect only one touch
+               event.preventDefault();
+               canvas_x = event.targetTouches[0].pageX;
+               canvas_y = event.targetTouches[0].pageY;
+                //touches are stored in the array called targetTouches
+         }
+
           
       } // end of img.onload
         
