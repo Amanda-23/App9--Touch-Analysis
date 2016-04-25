@@ -100,11 +100,37 @@
           /*This finally draws the image onto the first drawing canvas. The specific canvas is referred to by "context". This is established down in the HTML part of the file just under the first <canvas> tag. If we weren't worried about fixing an iPhone bug we would use context.drawImage(image, 0, 0, img.naturalWidth, img.naturalHeight, 0, 0, 600, 500) instead of drawImageIOSFix */
         
           drawImageIOSFix(context,img, 0, 0, img.naturalWidth, img.naturalHeight, 0, 0, 600, 500);
+          
+          init();
+          
 
           /*  +++++++++++++++ BEGIN IMAGE PROCESSING +++++++++++++++ */
           /*  ++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 
           /* PUT ANY CHANGES TO THE JAVASCRIPT HERE  */
+          function init() {
+          var canvas = document.getElementById('myCanvas');/* variable for first canvas touchzone- following code will appear in the first canvas*/
+              canvas.addEventListener("touchstart",doTouchStart,false)// this tells addEventListener to activate touchstart event
+              //the second argument is called doTouchStart and should be called when an image is touched on the canvas
+           }
+           // creates array
+           clicks=[];
+           
+          function doTouchStart(event) {
+          // because the default for touch events are much more complex, we preventDefault
+          // preventing default allows the function to detect only one touch
+          event.preventDefault();
+          canvas_x = event.targetTouches[0].pageX;
+          canvas_y = event.targetTouches[0].pageY;
+          //touches are stored in the array called targetTouches
+          alert("X="+canvas_x+ "Y="+canvas_y);
+          }
+          
+          // this stores the click data into the array  
+          clicks.push({x:canvas_x, y:canvas_y});
+          
+         
+          
           
 
           
@@ -122,25 +148,13 @@
     } // end of the else statement if file in NOT an image
   }); // end of the fileInput.addEventListener function
  } // end of the window.onload function
+   
+   
  
- function init() {
-                var canvas = document.getElementById('myCanvas');/* variable for first canvas touchzone- following code will appear in the first canvas*/
-                canvas.addEventListener("touchstart",doTouchStart,false)// this tells addEventListener to activate touchstart event
-                 //the second argument is called doTouchStart and should be called when an image is touched on the canvas
-          }
-
-         function doTouchStart(event) {
-                // because the default for touch events are much more complex, we preventDefault
-                // preventing default allows the function to detect only one touch
-               event.preventDefault();
-               canvas_x = event.targetTouches[0].pageX;
-               canvas_y = event.targetTouches[0].pageY;
-                //touches are stored in the array called targetTouches
-         }
  </script>
  </head>
 
- <body onload=init()>
+ <body>
   <div data-role="page">
     <div data-role="header">
     <h1 style="background-color: #73F3C0;">Touch and Analysis</h1><!--the style function changes color of background behind text-->
@@ -159,8 +173,8 @@
       <canvas id="myCanvas" width=600 height=500 style="border:1px solid #d3d3d3;"></canvas><!-- creates first canvas-->
       <script> /* This script initiates the cavas and puts the text on the canvas "myCanvas" */
         
-        var canvas = document.getElementById('myCanvas');
-         var context = canvas.getContext("2d");
+       var canvas = document.getElementById('myCanvas');
+       var context = canvas.getContext("2d");
              context.font = '20pt Calibri';/*font type and size*/
              context.fillStyle = "black";/*text color*/
              context.fillText("Original image will go here", 10, 20);/*this text will appear in first canvas*/
