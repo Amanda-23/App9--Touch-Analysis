@@ -105,20 +105,7 @@
           /*  ++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 
           /* PUT ANY CHANGES TO THE JAVASCRIPT HERE  */
-          function init() {
-                var canvas = document.getElementById('myCanvas');/* variable for first canvas touchzone- following code will appear in the first canvas*/
-                canvas.addEventListener("touchstart",doTouchStart,false)// this tells addEventListener to activate touchstart event
-                 //the second argument is called doTouchStart and should be called when an image is touched on the canvas
-          }
-
-         function doTouchStart(event) {
-                // because the default for touch events are much more complex, we preventDefault
-                // preventing default allows the function to detect only one touch
-               event.preventDefault();
-               canvas_x = event.targetTouches[0].pageX;
-               canvas_y = event.targetTouches[0].pageY;
-                //touches are stored in the array called targetTouches
-         }
+          
 
           
       } // end of img.onload
@@ -135,10 +122,25 @@
     } // end of the else statement if file in NOT an image
   }); // end of the fileInput.addEventListener function
  } // end of the window.onload function
+ 
+ function init() {
+                var canvas = document.getElementById('myCanvas');/* variable for first canvas touchzone- following code will appear in the first canvas*/
+                canvas.addEventListener("touchstart",doTouchStart,false)// this tells addEventListener to activate touchstart event
+                 //the second argument is called doTouchStart and should be called when an image is touched on the canvas
+          }
+
+         function doTouchStart(event) {
+                // because the default for touch events are much more complex, we preventDefault
+                // preventing default allows the function to detect only one touch
+               event.preventDefault();
+               canvas_x = event.targetTouches[0].pageX;
+               canvas_y = event.targetTouches[0].pageY;
+                //touches are stored in the array called targetTouches
+         }
  </script>
  </head>
 
- <body>
+ <body onload=init()>
   <div data-role="page">
     <div data-role="header">
     <h1 style="background-color: #73F3C0;">Touch and Analysis</h1><!--the style function changes color of background behind text-->
