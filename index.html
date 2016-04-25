@@ -101,6 +101,7 @@
         
           drawImageIOSFix(context,img, 0, 0, img.naturalWidth, img.naturalHeight, 0, 0, 600, 500);
           
+          //calls for the init funtion to begin the touch process
           init();
           
 
@@ -113,21 +114,21 @@
               canvas.addEventListener("touchstart",doTouchStart,false)// this tells addEventListener to activate touchstart event
               //the second argument is called doTouchStart and should be called when an image is touched on the canvas
            }
-           // creates array
-           clicks=[];
+           // creates array for touches to be stored into 
+           
            
           function doTouchStart(event) {
           // because the default for touch events are much more complex, we preventDefault
           // preventing default allows the function to detect only one touch
           event.preventDefault();
-          canvas_x = event.targetTouches[0].pageX;
-          canvas_y = event.targetTouches[0].pageY;
+          canvas_x = event.targetTouches[0].pageX;//creates the x coordinate of the area touched
+          canvas_y = event.targetTouches[0].pageY;//creates the y coordinate of the area touched
           //touches are stored in the array called targetTouches
           alert("X="+canvas_x+ "Y="+canvas_y);
           }
           
-          // this stores the click data into the array  
-          clicks.push({x:canvas_x, y:canvas_y});
+          
+         
           
          
           
