@@ -156,12 +156,21 @@
  </head>
 
  <body>
-  <div data-role="page">
-    <div data-role="header">
+  <div data-role="page"><!-- intro page of app-->
+      <div data-role="header">
     <h1 style="background-color: #73F3C0;">Touch and Analysis</h1><!--the style function changes color of background behind text-->
-    </div><!-- /header -->
-    <div data-role="content">	
-      <h2>Push the button below to take a picture that you wish to analyze RBG values for:</h2><!-- second heading is brief description-->
+      </div><!-- /header -->
+         <div data-role="content">
+           <p>Hello! Welcome to your Touch and Analysis app!</p><!-- separate paragraphs on intro page-->
+           <p>With this program, you should be able to locate a region of interest (ROI) on an uploaded image of your choice, by touch, and analyze the RGB values of your particular ROIs</p>
+           <p>Click the button to begin your adventure!</p>
+           <a href="#pagetwo" data-role="button">Let's begin!</a><!-- once this button is pressed, a next page opens-->
+         </div><!-- end of content-->
+  </div><!--closes page-->
+  
+  <div data-role="page" id="pagetwo"><!-- begins next page for image uploading and analyis-->
+       <div data-role="content">	
+         <h2>Push the button below to take a picture that you wish to analyze RBG values for:</h2><!-- second heading is brief description-->
       
       <div>
         Press the button to create or choose image file:
